@@ -1,4 +1,5 @@
 let quote, author = "";
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // fisrt, we call the quote API to get the quote data
 let quoteAPIURL = "https://api.quotable.io/random";
@@ -24,7 +25,6 @@ fetch(quoteAPIURL)
 
 // crypt quote
 function cryptQuote(quote) {
-    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let shuffledAlphabet = alphabet.split('').sort(function(){return 0.5-Math.random()}).join('');
     let encryptedQuote = "";
     for (let i = 0; i < quote.length; i++) {
@@ -38,4 +38,14 @@ function cryptQuote(quote) {
     }
 
     return encryptedQuote;
+}
+
+// build the UI
+function buildUI(encryptedQuote) {
+    let html = "";
+    for (let i = 0; i < encryptedQuote.length; i++) {
+        let letter = encryptedQuote[i];
+        html += `<span>${letter}</span>`;
+    }
+    document.querySelector('#quote').innerHTML = html;
 }
