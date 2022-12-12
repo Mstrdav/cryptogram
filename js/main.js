@@ -20,11 +20,13 @@ fetch(quoteAPIURL)
 
     // crypt the quote
     let encryptedQuote = cryptQuote(quote);
-    document.querySelector('#quote').innerHTML = encryptedQuote;
+
+    // build the UI
+    buildUI(encryptedQuote);
 });
 
 // crypt quote
-function cryptQuote(quote) {
+function cryptQuote(quote, difficulty = 1) {
     let shuffledAlphabet = alphabet.split('').sort(function(){return 0.5-Math.random()}).join('');
     let encryptedQuote = "";
     for (let i = 0; i < quote.length; i++) {
@@ -37,7 +39,13 @@ function cryptQuote(quote) {
         }
     }
 
-    return encryptedQuote;
+    // TODO : add difficulty
+
+    return {
+        "text": encryptedQuote,
+        "difficulty": difficulty,
+        "letters": letters
+    };
 }
 
 // build the UI
@@ -45,6 +53,9 @@ function buildUI(encryptedQuote) {
     let html = "";
     for (let i = 0; i < encryptedQuote.length; i++) {
         let letter = encryptedQuote[i];
+        if (alphabet.indexOf(letter) >= 0) {
+            letter = `<input type="text" maxlength="1" data-index="${i}">`;
+        }
         html += `<span>${letter}</span>`;
     }
     document.querySelector('#quote').innerHTML = html;

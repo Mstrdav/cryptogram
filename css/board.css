@@ -1,0 +1,36 @@
+#quote {
+    background: #f9f9f9;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.2em;
+    font-style: italic;
+    text-align: center;
+}
+
+#quote span {
+
+}
+
+#quote span input {
+    /* single caracter input, only bottom border */
+    border: none;
+    border-bottom: 1px solid #d3d3d3;
+    font-size: 1.2em;
+    font-style: italic;
+    text-align: center;
+    width: 1em;
+    border-radius: 10px;
+    margin: 0.2em 0;
+    padding: 5px;
+    background-color: #f9f9f9;
+
+    box-shadow: 1px 2px 2px 0px rgba(0,0,0,.1);
+}
+
+#quote span input:focus {
+    outline: none;
+    border-bottom: 1px solid #d3d3d3;
+    box-shadow: 1px 2px 2px 0px rgba(0,0,0,.1);
+}
