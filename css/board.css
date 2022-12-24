@@ -9,8 +9,11 @@
     text-align: center;
 }
 
-#quote span {
-
+#quote > span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20px;
 }
 
 #quote span input {
