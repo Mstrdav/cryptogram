@@ -10,10 +10,9 @@
 }
 
 #quote > span {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
-    width: 20px;
 }
 
 #quote span input {
