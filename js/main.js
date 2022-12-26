@@ -6,6 +6,18 @@ let quoteAPIURL = "https://api.quotable.io/random";
 fetch(quoteAPIURL)
 .catch(function(error) {
     console.log(error);
+    quote = "Mieux vaut brasser de l'air que couler";
+    author = "Isma Geindre";
+    document.querySelector('#author').innerHTML = author;
+
+    // to upper case
+    quote = quote.toUpperCase();
+
+    // crypt the quote
+    let [letters, encryptedQuote] = cryptQuote(quote);
+
+    // build the UI
+    buildUI(letters, encryptedQuote);
 })
 .then(function(response) {
     return response.json();
@@ -26,7 +38,7 @@ fetch(quoteAPIURL)
 });
 
 // crypt quote
-function cryptQuote(quote, difficulty = 1) {
+function cryptQuote(quote, difficulty = 5) {
     let shuffledAlphabet = alphabet.split('').sort(function(){return 0.5-Math.random()}).join('');
     let encryptedQuote = "";
     for (let i = 0; i < quote.length; i++) {
@@ -104,4 +116,6 @@ function buildUI(letters, encryptedQuote) {
         html += `<span>${letter}</span>`;
     }
     document.querySelector('#quote').innerHTML = html;
+
+    loadListeners();
 }
