@@ -108,13 +108,23 @@ function cryptQuote(quote, difficulty = 5) {
 function buildUI(letters, encryptedQuote) {
     console.log(letters);
     let html = "";
+    let lastWasLetter = false;
     for (let letter of encryptedQuote) {
+        let currentIsLetter = false;
         if (alphabet.indexOf(letter) >= 0) {
+            currentIsLetter = true;
             let index = letters.findIndex(ltr => ltr.letter == letter);
             // if letter has original letter, input is disabled
             let disabled = letters[index].originalLetter ? "disabled" : "";
             letter = `<input ${disabled} type="text" maxlength="1" data-index="${index}" value="${letters.find(ltr => ltr.letter == letter).originalLetter}"/><span>${letters[index].letter}</span>`;
         }
+        if (currentIsLetter && !lastWasLetter) {
+            html += "<div class='word'>";
+        } else if (!currentIsLetter && lastWasLetter) {
+            html += "</div>";
+        }
+
+        lastWasLetter = currentIsLetter;
         html += `<span>${letter}</span>`;
     }
     document.querySelector('#quote').innerHTML = html;

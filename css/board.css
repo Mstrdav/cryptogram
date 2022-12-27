@@ -9,7 +9,15 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#quote > span {
+#quote div.word {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 10px;
+    flex-wrap: nowrap;
+}
+
+#quote div.word > span {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
