@@ -111,7 +111,9 @@ function buildUI(letters, encryptedQuote) {
     for (let letter of encryptedQuote) {
         if (alphabet.indexOf(letter) >= 0) {
             let index = letters.findIndex(ltr => ltr.letter == letter);
-            letter = `<input type="text" maxlength="1" data-index="${index}" value="${letters.find(ltr => ltr.letter == letter).originalLetter}"/><span>${letters[index].letter}</span>`;
+            // if letter has original letter, input is disabled
+            let disabled = letters[index].originalLetter ? "disabled" : "";
+            letter = `<input ${disabled} type="text" maxlength="1" data-index="${index}" value="${letters.find(ltr => ltr.letter == letter).originalLetter}"/><span>${letters[index].letter}</span>`;
         }
         html += `<span>${letter}</span>`;
     }
