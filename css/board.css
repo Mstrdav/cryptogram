@@ -1,8 +1,27 @@
+body {
+    background-color: #f9f9f9;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+#container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
+    text-align: center;
+}
+
 #quote {
     background: #f9f9f9;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px 20px;
     margin: 10px 0;
     text-align: center;
 
@@ -15,6 +34,11 @@
     align-items: center;
     min-width: 10px;
     flex-wrap: nowrap;
+
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding:0 5px;
+    margin:  5px 0;
 }
 
 #quote div.word > span {
@@ -39,6 +63,15 @@
     outline: none;
     border-bottom: 1px solid #d3d3d3;
     box-shadow: 1px 2px 2px 0px rgba(0,0,0,.1);
+}
+
+#quote span input:disabled {
+    background-color: #f9f9f9;
+    border-bottom: none;
+}
+
+#quote span input:disabled + span {
+    opacity: 0.1;
 }
 
 #quote span span {
