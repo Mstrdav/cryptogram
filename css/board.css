@@ -17,6 +17,10 @@ body {
     text-align: center;
 }
 
+#tag {
+    opacity: 0.5;
+}
+
 #quote {
     background: #f9f9f9;
     border: 1px solid #d3d3d3;
@@ -65,19 +69,24 @@ body {
     box-shadow: 1px 2px 2px 0px rgba(0,0,0,.1);
 }
 
+#quote span input:valid + span {
+    opacity: 0;
+}
+
 #quote span input:disabled {
     background-color: #f9f9f9;
-    border-bottom: none;
+    border-bottom-color: white;
 }
 
 #quote span input:disabled + span {
-    opacity: 0.1;
+    opacity: 0;
 }
 
 #quote span span {
     opacity: 0.5;
     transition: all .3s;
     padding: 5px 0;
+    font-size: smaller;
 }
 
 #quote span span.active {

@@ -1,4 +1,4 @@
-let quote, author = "";
+let quote, author, tag = "";
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // fisrt, we call the quote API to get the quote data
@@ -8,7 +8,9 @@ fetch(quoteAPIURL)
     console.log(error);
     quote = "Mieux vaut brasser de l'air que couler";
     author = "Isma Geindre";
+    tag = "proverbe";
     document.querySelector('#author').innerHTML = author;
+    document.querySelector('#tag').innerHTML = tag;
 
     // to upper case
     quote = quote.toUpperCase();
@@ -25,7 +27,9 @@ fetch(quoteAPIURL)
     console.log(data);
     quote = data.content;
     author = data.author;
+    tag = data.tags[0];
     document.querySelector('#author').innerHTML = author;
+    document.querySelector('#tag').innerHTML = tag;
 
     // to upper case
     quote = quote.toUpperCase();
@@ -115,7 +119,7 @@ function buildUI(letters, encryptedQuote) {
             currentIsLetter = true;
             let index = letters.findIndex(ltr => ltr.letter == letter);
             // if letter has original letter, input is disabled
-            let disabled = letters[index].originalLetter ? "disabled" : "";
+            let disabled = letters[index].originalLetter ? "disabled" : "required"; // required is for selecting all empty input with css
             letter = `<input ${disabled} type="text" maxlength="1" data-index="${index}" value="${letters.find(ltr => ltr.letter == letter).originalLetter}"/><span>${letters[index].letter}</span>`;
         }
         if (currentIsLetter && !lastWasLetter) {
