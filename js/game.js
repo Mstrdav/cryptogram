@@ -24,29 +24,32 @@ const loadListeners = () => {
         });
 
       // go to the next empty input only if the current input is not empty
-      // struct : (span > input + span) * 100
-      let nextInputParent =
-        input.parentElement.nextElementSibling;
-        while (!(nextInputParent.querySelector("input")?.value == "") && nextInputParent.nextElementSibling) {
-            nextInputParent = nextInputParent.nextElementSibling;
-        }
+      // struct : (.word > (span > input + span) * 5)*20
+      
+      // find all inputs
+      let inputs = Array.from(document.querySelectorAll("input"));
 
-        // if there is no input, check again from the beginning
-        if (!nextInputParent.querySelector("input")) {
-            nextInputParent = document.querySelector("span");
-            while (!(nextInputParent.querySelector("input")?.value == "") && nextInputParent.nextElementSibling) {
-                nextInputParent = nextInputParent.nextElementSibling;
-            }
-        }
+      // find the index of the current input
+      let index = inputs.indexOf(this);
 
-        if (nextInputParent.querySelector("input")) {
-            // focus on the next input, if current input is not empty
-            if (this.value != "") { nextInputParent.querySelector("input").focus(); }
-        } else {
-            console.log("end of the game");
-            //unfocus
-            input.blur();
-        }
+      // reorder the inputs : start from index and loop
+      let reorderedInputs = inputs.slice(index, inputs.length - 1).concat(inputs.slice(0, index - 1));
+
+      // find the next empty input
+      index = 0;
+      let nextInput = reorderedInputs[0];
+      while (nextInput && nextInput.value != "") {
+        nextInput = reorderedInputs[++index];
+      }
+
+      // if there is a next input, focus on it
+      if (nextInput) {
+        nextInput.focus();
+      } else {
+        console.log("end of the game");
+        //unfocus
+        input.blur();
+      }
     });
 
     input.addEventListener("blur", function () {
