@@ -46,7 +46,29 @@ const loadListeners = () => {
       if (nextInput) {
         nextInput.focus();
       } else {
-        console.log("end of the game");
+        // check if the user has the right answer
+        // we get the hash from the local storage
+        let hash = localStorage.getItem("hash");
+
+        // we get the value of the inputs
+        let value = "";
+        inputs.forEach((input) => {
+          value += input.value;
+        });
+
+        if (value.split("").sort().join("") == hash) {
+          // the user has the right answer
+          // we show the modal
+          document.querySelector("#modal").classList.add("active");
+        } else {
+          // the user has the wrong answer
+          // we shake the screen
+          document.querySelector("#quote").classList.add("shake");
+          setTimeout(() => {
+            document.querySelector("#quote").classList.remove("shake");
+          }, 1000);
+        }
+
         //unfocus
         input.blur();
       }

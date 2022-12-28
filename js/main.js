@@ -1,6 +1,28 @@
 let quote, author, tag = "";
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+// theme
+// first, we get the theme from the local storage
+let theme = localStorage.getItem("theme");
+if (theme == null) {
+    theme = "light";
+    localStorage.setItem("theme", theme);
+}
+
+// we set the theme on html element
+document.querySelector("html").classList = theme == "light" ? "" : "dark";
+
+// listener on the theme button
+document.querySelector("#toggle").addEventListener("click", function() {
+    if (theme == "light") {
+        theme = "dark";
+    } else {
+        theme = "light";
+    }
+    localStorage.setItem("theme", theme);
+    document.querySelector("html").classList = theme == "light" ? "" : "dark";
+});
+
 // fisrt, we call the quote API to get the quote data
 let quoteAPIURL = "https://api.quotable.io/random";
 fetch(quoteAPIURL)
@@ -43,6 +65,12 @@ fetch(quoteAPIURL)
 
 // crypt quote
 function cryptQuote(quote, difficulty = 5) {
+    // create a hash from quote
+    let hash = quote.toUpperCase().split("").filter(char => alphabet.includes(char)).sort().join("");
+
+    // save the hash in the local storage
+    localStorage.setItem("hash", hash);
+
     let shuffledAlphabet = alphabet.split('').sort(function(){return 0.5-Math.random()}).join('');
     let encryptedQuote = "";
     for (let i = 0; i < quote.length; i++) {
@@ -105,7 +133,7 @@ function cryptQuote(quote, difficulty = 5) {
     // we merge the lettersPresentOriginalRemoved and lettersPresent arrays
     letters = lettersPresentOriginalRemoved.concat(lettersPresent);
 
-    return [letters, encryptedQuote];
+    return [letters, encryptedQuote, hash];
 }
 
 // build the UI
@@ -135,3 +163,4 @@ function buildUI(letters, encryptedQuote) {
 
     loadListeners();
 }
+
