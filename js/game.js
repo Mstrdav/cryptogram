@@ -1,8 +1,15 @@
 // when an input is selected, find all input with the same letter, apply active class
 const loadListeners = () => {
   console.log("loading listeners");
+  let score = Date.now();
   document.querySelectorAll("input").forEach((input) => {
     input.addEventListener("focus", function () {
+      // scroll to make this input visible, even with keyboard
+      this.scrollIntoView({ behavior: "auto", block: "start" });
+      // scroll back a little
+      window.scrollBy(0, -100);
+      
+
       let letter = this.getAttribute("data-index");
       document
         .querySelectorAll(`input[data-index="${letter}"]`)
@@ -59,6 +66,11 @@ const loadListeners = () => {
         if (value.split("").sort().join("") == hash) {
           // the user has the right answer
           // we show the modal
+          score = Date.now() - score;
+          // make score human readable
+          score = Math.floor(score / 1000);
+          // display the score, with minutes and seconds
+          document.querySelector("#modal-score").innerHTML = `${Math.floor(score / 60)} min, ${score % 60} s`;
           document.querySelector("#modal").classList.add("active");
         } else {
           // the user has the wrong answer

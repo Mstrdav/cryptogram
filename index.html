@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pouvez vous résoudre ce problème ?</title>
-    <link rel="stylesheet" href="css/crypto.css">
+    <title>Cryptle - By INSA</title>
+
+    <link rel="stylesheet" href="./css/board.css">
 </head>
 <body>
- <h1>Résolvez cette énigme dans les temps </h1>
+    <!-- Cryptle game
+    The goal is to guess the sentence by replacing the letters with the right ones.
+    -->
+    <h1>Cryptle</h1>
+    <p>This famous quote has been crypted. Find the original letters in the best time possible ! Then try with higher difficulty. <br>You can use tab and shift+tab to move, and ctrl+z to undo.</p>
+    <div id="container">
+        <div id="quote"></div>
+        <p id="author"></p>
+        <p id="tag"></p>
+    </div>
 
-    <p> <!--Texte affiche dans la page d'accueil-->
-        Dans cette énigme , une célèbre citation a été cryptée. Votre job est simple, retrouvez là avant la fin du chrono.
+    <!-- dark theme toggle -->
+    <img src="./img/toggle.svg" alt="Theme" id="toggle">
+    <!-- difficulty selector -->
+    <select name="difficulty" id="difficulty">
+        <option value="8">Facile</option>
+        <option value="5">Moyen</option>
+        <option value="2">Difficile</option>
+        <option value="0">Impossible</option>
+    </select>
 
-    </p>
-    <input type=button id="button" onClick="
-    parent.location='CryptoSolve.html'"
-    value='Jouer'>
-    <!--OOOO on ajoutera une image de notre jeu OOOO-->
+    <!-- game won modal -->
+    <div id="modal">
+        <div id="modal-content">
+            <p id="modal-quote">Vous avez gagné !</p>
+            <p id="modal-score"></p>
+            <!-- new game anchor -->
+            <a href="./colin.html">Nouvelle partie</a>
+        </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+    <script src="./js/game.js"></script>
 </body>
-
-<div>
-    <footer>
-    ©2022 Cryptopotes. All rights reserved. Version 02.01.125
-    </footer>
-</div>
 </html>
-

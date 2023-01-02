@@ -12,6 +12,17 @@ if (theme == null) {
 // we set the theme on html element
 document.querySelector("html").classList = theme == "light" ? "" : "dark";
 
+// difficulty
+// first, we get the difficulty from the local storage
+let difficulty = localStorage.getItem("difficulty");
+if (difficulty == null) {
+    difficulty = 9; // easy
+    localStorage.setItem("difficulty", difficulty);
+}
+
+// we set the difficulty on the difficulty select button
+document.querySelector("#difficulty").value = difficulty;
+
 // listener on the theme button
 document.querySelector("#toggle").addEventListener("click", function() {
     if (theme == "light") {
@@ -21,6 +32,12 @@ document.querySelector("#toggle").addEventListener("click", function() {
     }
     localStorage.setItem("theme", theme);
     document.querySelector("html").classList = theme == "light" ? "" : "dark";
+});
+
+// listener on the difficulty select button
+document.querySelector("#difficulty").addEventListener("change", function() {
+    difficulty = this.value;
+    localStorage.setItem("difficulty", difficulty);
 });
 
 // fisrt, we call the quote API to get the quote data
@@ -33,12 +50,13 @@ fetch(quoteAPIURL)
     tag = "proverbe";
     document.querySelector('#author').innerHTML = author;
     document.querySelector('#tag').innerHTML = tag;
+    document.querySelector('#modal-quote').innerHTML = quote;
 
     // to upper case
     quote = quote.toUpperCase();
 
     // crypt the quote
-    let [letters, encryptedQuote] = cryptQuote(quote);
+    let [letters, encryptedQuote] = cryptQuote(quote, difficulty);
 
     // build the UI
     buildUI(letters, encryptedQuote);
@@ -52,12 +70,13 @@ fetch(quoteAPIURL)
     tag = data.tags[0];
     document.querySelector('#author').innerHTML = author;
     document.querySelector('#tag').innerHTML = tag;
+    document.querySelector('#modal-quote').innerHTML = quote;
 
     // to upper case
     quote = quote.toUpperCase();
 
     // crypt the quote
-    let [letters, encryptedQuote] = cryptQuote(quote);
+    let [letters, encryptedQuote] = cryptQuote(quote, difficulty);
 
     // build the UI
     buildUI(letters, encryptedQuote);
