@@ -9,21 +9,20 @@
     <link rel="stylesheet" href="./css/board.css">
 </head>
 <body>
-    <!-- Cryptle game
-    The goal is to guess the sentence by replacing the letters with the right ones.
-    -->
-    <h1>Cryptle</h1>
-    <div id="container">
-        <div id="quote"></div>
-        <p id="author"></p>
-        <p id="tag"></p>
+    <!-- Cryptle, un jeu où il faut retrouver la citation qui a été cryptée par substitution -->
+    <h1>Cryptle</h1> <!-- game title -->
+    <div id="container"> <!-- game container -->
+        <div id="quote"></div> <!-- quote container, là où il y aura les inputs -->
+        <p id="author"></p> <!-- quote author, comme "Francis Bacon" -->
+        <p id="tag"></p> <!-- quote tag, comme "friendship" ou "technology" -->
     </div>
+    <!-- En bas, une petite aide pour comprendre le jeu -->
     <p>This famous quote has been crypted. Find the original letters in the best time possible ! Then try with higher difficulty. <br>You can use tab and shift+tab to move, and ctrl+z to undo.</p>
 
 
-    <!-- dark theme toggle -->
+    <!-- bouton pour changer de thème (clair|sombre) -->
     <img src="./img/toggle.svg" alt="Theme" id="toggle">
-    <!-- difficulty selector -->
+    <!-- bouton pour choisir la difficulté (facile|moyen|difficile|impossible) -->
     <select name="difficulty" id="difficulty">
         <option value="8">Facile</option>
         <option value="5">Moyen</option>
@@ -31,17 +30,17 @@
         <option value="0">Impossible</option>
     </select>
 
-    <!-- game won modal -->
+    <!-- modal de fin de partie -->
     <div id="modal">
         <div id="modal-content">
             <p id="modal-quote">Vous avez gagné !</p>
-            <p id="modal-score"></p>
-            <!-- new game anchor -->
+            <p id="modal-score"></p> <!-- le score est ajouté ici en javascript -->
+            <!-- lien vers une nouvelle partie (rafraîchissement de la page) -->
             <a href="./">Nouvelle partie</a>
         </div>
     </div>
 
-    <script src="./js/main.js"></script>
-    <script src="./js/game.js"></script>
+    <script src="./js/main.js"></script> <!-- script principal, gère la construction de l'UI, la récupération de la citation via l'API, etc. -->
+    <script src="./js/game.js"></script> <!-- script qui gère le jeu en lui-même, les inputs, la validation, le score, etc. -->
 </body>
 </html>
