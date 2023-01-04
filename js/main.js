@@ -85,9 +85,9 @@ fetch(quoteAPIURL)
     quote = data.content; // On met à jour nos variables
     author = data.author;
     tag = data.tags[0];
-    document.querySelector('#author').innerHTML = author; // On remplit les éléments du html via l'attribut innerHTML
-    document.querySelector('#tag').innerHTML = tag;
-    document.querySelector('#modal-quote').innerHTML = quote;
+    document.querySelector('#author').innerText = author; // On remplit les éléments du html via l'attribut innerHTML
+    document.querySelector('#tag').innerText = tag;
+    document.querySelector('#modal-quote').innerText = quote;
 
     // De la même manière, on met la citation en majuscule
     quote = quote.toUpperCase();
