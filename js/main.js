@@ -53,7 +53,7 @@ document.querySelector("#difficulty").addEventListener("change", function() {
 // - avoir une citation différente à chaque refresh
 // - le code est public, donc pas de clef
 // - apprendre à utiliser une API
-let quoteAPIURL = "https://api.quotable.io/random";
+let quoteAPIURL = "https://zenquotes.io/api/random";
 fetch(quoteAPIURL)
 .catch(function(error) {
     // Cette partie est éxécutée s'il y a une erreur
@@ -82,8 +82,8 @@ fetch(quoteAPIURL)
     return response.json();
 }).then(function(data) {
     // Maintenant, on a la réponse de l'API, et on peut la manipuler aisément grâce au format JSON
-    quote = data.content; // On met à jour nos variables
-    author = data.author;
+    quote = data[0].q; // On met à jour nos variables
+    author = data[0].a;
     tag = data.tags[0];
     document.querySelector('#author').innerText = author; // On remplit les éléments du html via l'attribut innerHTML
     document.querySelector('#tag').innerText = tag;
