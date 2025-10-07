@@ -4,6 +4,109 @@ const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // on initialise la variable alph
 // let est une variable qui peut être modifiée (c'est un peu plus compliqué que ça)
 // const est une variable qui ne peut pas être modifiée
 
+const QUOTES = [
+    {
+        "quote": "La vie est un mystère qu'il faut vivre, et non un problème à résoudre.",
+        "author": "Gandhi",
+        "tag": "Vie"
+    },
+    {
+        "quote": "Le succès n'est pas la clé du bonheur. Le bonheur est la clé du succès. Si vous aimez ce que vous faites, vous réussirez.",
+        "author": "Albert Schweitzer",
+        "tag": "Bonheur"
+    },
+    {
+        "quote": "La plus grande gloire n'est pas de ne jamais tomber, mais de se relever à chaque chute.",
+        "author": "Confucius",
+        "tag": "Persévérance"
+    },
+    {
+        "quote": "Le seul endroit où le succès vient avant le travail, c'est dans le dictionnaire.",
+        "author": "Vidal Sassoon",
+        "tag": "Travail"
+    },
+    {
+        "quote": "Ne jugez pas chaque jour à la récolte que vous faites, mais aux graines que vous plantez.",
+        "author": "Robert Louis Stevenson",
+        "tag": "Patience"
+    },
+    {
+        "quote": "La créativité, c'est l'intelligence qui s'amuse.",
+        "author": "Albert Einstein",
+        "tag": "Créativité"
+    },
+    {
+        "quote": "Le bonheur n'est pas quelque chose de prêt à l'emploi. Il vient de vos propres actions.",
+        "author": "Dalaï Lama",
+        "tag": "Bonheur"
+    },
+    {
+        "quote": "La vie est 10% ce qui nous arrive et 90% comment nous y réagissons.",
+        "author": "Charles R. Swindoll",
+        "tag": "Attitude"
+    },
+    {
+        "quote": "L'éducation est l'arme la plus puissante pour changer le monde.",
+        "author": "Nelson Mandela",
+        "tag": "Éducation"
+    },
+    {
+        "quote": "Le voyage de mille lieues commence par un pas.",
+        "author": "Lao Tseu",
+        "tag": "Début"
+    },
+    {
+        "quote": "Il n'y a qu'une façon d'échouer, c'est d'abandonner avant d'avoir réussi.",
+        "author": "Georges Clémenceau",
+        "tag": "Persévérance"
+    },
+    {
+        "quote": "La seule limite à notre épanouissement de demain sera nos doutes d'aujourd'hui.",
+        "author": "Franklin D. Roosevelt",
+        "tag": "Confiance"
+    },
+    {
+        "quote": "Le plus grand risque est de ne prendre aucun risque.",
+        "author": "Mark Zuckerberg",
+        "tag": "Courage"
+    },
+    {
+        "quote": "La simplicité est la sophistication suprême.",
+        "author": "Leonardo da Vinci",
+        "tag": "Simplicité"
+    },
+    {
+        "quote": "La meilleure façon de prédire l'avenir est de le créer.",
+        "author": "Peter Drucker",
+        "tag": "Avenir"
+    },
+    {
+        "quote": "Le bonheur n'est pas une destination, c'est une façon de voyager.",
+        "author": "Margaret Lee Runbeck",
+        "tag": "Bonheur"
+    },
+    {
+        "quote": "La vie est trop courte pour être petite.",
+        "author": "Benjamin Disraeli",
+        "tag": "Vie"
+    },
+    {
+        "quote": "Le courage ne rugit pas toujours. Parfois, le courage est la petite voix à la fin de la journée qui dit : 'Je réessaierai demain.'",
+        "author": "Mary Anne Radmacher",
+        "tag": "Courage"
+    },
+    {
+        "quote": "Ne regardez pas l'horloge ; faites ce qu'elle fait. Continuez.",
+        "author": "Sam Levenson",
+        "tag": "Persévérance"
+    },
+    {
+        "quote": "La vie est un défi, relève-le !",
+        "author": "Mère Teresa",
+        "tag": "Défi"
+    }
+]
+
 /* GESTION DU THEME (SOMBRE|CLAIR) */
 // On récupère le thème dans le local storage
 let theme = localStorage.getItem("theme");
@@ -58,9 +161,11 @@ fetch(quoteAPIURL)
 .catch(function(error) {
     // Cette partie est éxécutée s'il y a une erreur
     console.log(error); // Log pour debug
-    quote = "Mieux vaut brasser de l'air que couler"; // On prend une citation de secours. TODO: avoir une banque de citation pour cycler quand même.
-    author = "Isma Geindre";
-    tag = "proverbe";
+    // On met une citation par défaut
+    let randomIndex = Math.floor(Math.random() * QUOTES.length);
+    quote = QUOTES[randomIndex].quote; // On met à jour nos variables
+    author = QUOTES[randomIndex].author;
+    tag = QUOTES[randomIndex].tag;
 
     // On remplit les éléments du html via l'attribut innerHTML
     document.querySelector('#author').innerHTML = author;
