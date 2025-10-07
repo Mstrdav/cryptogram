@@ -175,6 +175,9 @@ fetch(quoteAPIURL)
     // On met la citation en majuscule
     quote = quote.toUpperCase();
 
+    // On normalise pour remplacer les lettres accentuées par leur équivalent non accentué
+    quote = quote.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // source : https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
+
     // On crypte la citation grace à la fonction cryptQuote (voir plus bas)
     let [letters, encryptedQuote] = cryptQuote(quote, difficulty);
 
