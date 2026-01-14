@@ -164,7 +164,7 @@ fetch(quoteAPIURL)
     // On met une citation par défaut
     let randomIndex = Math.floor(Math.random() * QUOTES.length);
     quote = QUOTES[randomIndex].quote; // On met à jour nos variables
-    author = QUOTES[randomIndex].author || QUOTES[randomIndex].from || "Inconnu";
+    author = QUOTES[randomIndex].author;
     tag = QUOTES[randomIndex].tag || "Inconnu"; 
 
     // On remplit les éléments du html via l'attribut innerHTML
@@ -191,8 +191,8 @@ fetch(quoteAPIURL)
 }).then(function(data) {
     // Maintenant, on a la réponse de l'API, et on peut la manipuler aisément grâce au format JSON
     quote = data.quote; // On met à jour nos variables
-    author = data.from;
-    tag = data.tags || "Inconnu"; // Si le tag est vide, on met "Inconnu"
+    author = data.from || data.author || "Inconnu";
+    tag = data.tags || "pas de tags"; // Si le tag est vide, on met "Pas de tags"
     document.querySelector('#author').innerText = author; // On remplit les éléments du html via l'attribut innerHTML
     document.querySelector('#tag').innerText = tag;
     document.querySelector('#modal-quote').innerText = quote;
