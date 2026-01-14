@@ -6,12 +6,25 @@
 const loadListeners = () => {
   console.log("loading listeners"); // on peut voir dans la console que cette fonction est appelée à chaque fois qu'on change de quote
   let score = Date.now(); // on initialise le score à la date actuellle (en millisecondes). On va le soustraire à la date actuelle à la fin du jeu pour avoir le temps écoulé
+  
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "left" || event.key === "ArrowLeft") {
+      // focus previous input
+      document.activeElement.focusPrevious();
+    } else if (event.key === "right" || event.key === "ArrowRight") {
+      // focus next input
+      document.activeElement.focusNext();
+    }
+  });
+  
   document.querySelectorAll("input").forEach((input) => {
     // l'intérieur de cette boucle est exécuté pour chaque input
 
     // premièrement, on ajoute un listener sur le focus de l'input.
     // c'est à dire quand on clique sur l'input, ou qu'on y entre en faisant tab
     input.addEventListener("focus", function () {
+      input.select(); // on sélectionne le texte de l'input, pour que l'utilisateur puisse directement taper une lettre sans avoir à effacer l'ancienne
+
       // on récupère la lettre de l'input.
       // on a mis cette lettre dans un attribut data-index, dans la fonction buildUI
       let letter = this.getAttribute("data-index");

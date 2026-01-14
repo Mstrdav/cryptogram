@@ -156,7 +156,7 @@ document.querySelector("#difficulty").addEventListener("change", function() {
 // - avoir une citation différente à chaque refresh
 // - le code est public, donc pas de clef
 // - apprendre à utiliser une API
-let quoteAPIURL = "https://quotes.domiadi.com/api";
+let quoteAPIURL = "https://quotes-api-self.vercel.app/quote"; // https://quotes.domiadi.com/api";
 fetch(quoteAPIURL)
 .catch(function(error) {
     // Cette partie est éxécutée s'il y a une erreur
@@ -164,8 +164,8 @@ fetch(quoteAPIURL)
     // On met une citation par défaut
     let randomIndex = Math.floor(Math.random() * QUOTES.length);
     quote = QUOTES[randomIndex].quote; // On met à jour nos variables
-    author = QUOTES[randomIndex].author;
-    tag = QUOTES[randomIndex].tag;
+    author = QUOTES[randomIndex].author || QUOTES[randomIndex].from || "Inconnu";
+    tag = QUOTES[randomIndex].tag || "Inconnu"; 
 
     // On remplit les éléments du html via l'attribut innerHTML
     document.querySelector('#author').innerHTML = author;
@@ -298,8 +298,8 @@ function cryptQuote(quote, difficulty = 5) {
     letters = lettersPresentOriginalRemoved.concat(lettersPresent);
 
     // On supprime les tableaux utilisés, pour ne pas que les utilisateurs puissent les voir
-    delete lettersPresent;
-    delete lettersPresentOriginalRemoved;
+    lettersPresent = null;
+    lettersPresentOriginalRemoved = null;
 
     return [letters, encryptedQuote]; // On retourne le tableau des lettres, et la citation cryptée
 }
