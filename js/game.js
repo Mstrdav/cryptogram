@@ -10,10 +10,10 @@ const loadListeners = () => {
   document.addEventListener("keydown", (event) => {
     if (event.key === "left" || event.key === "ArrowLeft") {
       // focus previous input
-      document.activeElement.focusPrevious();
+      document.activeElement.previousElementSibling?.focus();
     } else if (event.key === "right" || event.key === "ArrowRight") {
       // focus next input
-      document.activeElement.focusNext();
+      document.activeElement.nextElementSibling?.focus();
     }
   });
   
