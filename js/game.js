@@ -10,7 +10,7 @@ const loadListeners = () => {
   document.addEventListener("keydown", (event) => {
     if (event.key === "left" || event.key === "ArrowLeft") {
       // focus previous input
-      let allNotDisabledInput = document.querySelectorAll("input").filter(input => input.disabled == false);
+      let allNotDisabledInput = document.querySelectorAll("input:not([disabled])");
       let focusedElement = document.activeElement;
       let index = allNotDisabledInput.indexOf(focusedElement);
       if (index > 0) {
@@ -20,7 +20,7 @@ const loadListeners = () => {
       }
     } else if (event.key === "right" || event.key === "ArrowRight") {
       // focus next input
-      let allNotDisabledInput = document.querySelectorAll("input").filter(input => input.disabled == false);
+      let allNotDisabledInput = document.querySelectorAll("input:not([disabled])");
       let focusedElement = document.activeElement;
       let index = allNotDisabledInput.indexOf(focusedElement);
       if (index < allNotDisabledInput.length - 1) {
