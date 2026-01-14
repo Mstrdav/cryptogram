@@ -10,23 +10,23 @@ const loadListeners = () => {
   document.addEventListener("keydown", (event) => {
     if (event.key === "left" || event.key === "ArrowLeft") {
       // focus previous input
-      allFocusable = Array.from(document.querySelectorAll("input"));
+      let allNotDisabledInput = document.querySelectorAll("input").filter(input => input.disabled == false);
       let focusedElement = document.activeElement;
-      let index = allFocusable.indexOf(focusedElement);
+      let index = allNotDisabledInput.indexOf(focusedElement);
       if (index > 0) {
-        allFocusable[index - 1].focus();
+        allNotDisabledInput[index - 1].focus();
       } else {
-        allFocusable[allFocusable.length - 1].focus();
+        allNotDisabledInput[allFocusable.length - 1].focus();
       }
     } else if (event.key === "right" || event.key === "ArrowRight") {
       // focus next input
-      allFocusable = Array.from(document.querySelectorAll("input"));
+      let allNotDisabledInput = document.querySelectorAll("input").filter(input => input.disabled == false);
       let focusedElement = document.activeElement;
-      let index = allFocusable.indexOf(focusedElement);
-      if (index < allFocusable.length - 1) {
-        allFocusable[index + 1].focus();
+      let index = allNotDisabledInput.indexOf(focusedElement);
+      if (index < allNotDisabledInput.length - 1) {
+        allNotDisabledInput[index + 1].focus();
       } else {
-        allFocusable[0].focus();
+        allNotDisabledInput[0].focus();
       }
     }
   });
