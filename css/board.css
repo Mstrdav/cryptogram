@@ -31,7 +31,7 @@ p {
 
  /* darkmode */
  .dark {
-    filter: invert(1) hue-rotate(180deg);
+    filter: invert(1) hue-rotate(180deg) brightness(120%);
  }
 
  #toggle {
