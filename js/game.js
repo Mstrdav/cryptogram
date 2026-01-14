@@ -11,8 +11,7 @@ const loadListeners = () => {
     if (event.key === "left" || event.key === "ArrowLeft") {
       // focus previous input
       let allNotDisabledInput = document.querySelectorAll("input:not([disabled])");
-      let focusedElement = document.activeElement;
-      let index = allNotDisabledInput.indexOf(focusedElement);
+      let index = allNotDisabledInput.indexOf(document.activeElement);
       if (index > 0) {
         allNotDisabledInput[index - 1].focus();
       } else {
@@ -21,8 +20,7 @@ const loadListeners = () => {
     } else if (event.key === "right" || event.key === "ArrowRight") {
       // focus next input
       let allNotDisabledInput = document.querySelectorAll("input:not([disabled])");
-      let focusedElement = document.activeElement;
-      let index = allNotDisabledInput.indexOf(focusedElement);
+      let index = allNotDisabledInput.indexOf(document.activeElement);
       if (index < allNotDisabledInput.length - 1) {
         allNotDisabledInput[index + 1].focus();
       } else {
